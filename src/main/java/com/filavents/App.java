@@ -11,6 +11,7 @@ public class App {
 
     static Logger logger = LoggerFactory.getLogger(App.class);
 
+
     public static void main(String[] args) {
 
         Vertx vertx = Vertx.vertx();
