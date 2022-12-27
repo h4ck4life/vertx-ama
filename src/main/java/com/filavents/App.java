@@ -24,7 +24,7 @@ public class App {
             ctx.next();
         });
 
-        router.get("/hello").respond(RedditController::getRandomAMA);
+        router.get("/random").respond(RedditController::getRandomAMA);
 
         int runningPort = Integer.parseInt(System.getenv("PORT"));
         server.requestHandler(router).listen(runningPort).andThen(httpServerAsyncResult -> {

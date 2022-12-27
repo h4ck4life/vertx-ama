@@ -2,13 +2,18 @@ package com.filavents.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "reddit_ama")
 public class Reddit {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id", nullable = false)
-    private Long id;
+    @Column(name = "user_id", nullable = false)
+    private String userId;
+
+    @Id
+    @Column(name = "QA_ID", nullable = false)
+    private String qaId;
 
     @Column(name = "title", nullable = false)
     private String title;
@@ -22,12 +27,23 @@ public class Reddit {
     @Column(name = "answer", nullable = false)
     private String answer;
 
-    public Long getId() {
-        return id;
+    @Column(name = "timestamp", nullable = false)
+    private String timestamp;
+
+    public String getUserId() {
+        return userId;
     }
 
-    public void setIdx(Long id) {
-        this.id = id;
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getQaId() {
+        return qaId;
+    }
+
+    public void setQaId(String qaId) {
+        this.qaId = qaId;
     }
 
     public String getTitle() {
@@ -62,18 +78,37 @@ public class Reddit {
         this.answer = answer;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Reddit reddit = (Reddit) o;
+        return Objects.equals(userId, reddit.userId) && Objects.equals(qaId, reddit.qaId) && Objects.equals(title, reddit.title) && Objects.equals(url, reddit.url) && Objects.equals(question, reddit.question) && Objects.equals(answer, reddit.answer) && Objects.equals(timestamp, reddit.timestamp);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId, qaId, title, url, question, answer, timestamp);
     }
 
     @Override
     public String toString() {
         return "Reddit{" +
-                "idx=" + id +
+                "userId='" + userId + '\'' +
+                ", qaId='" + qaId + '\'' +
                 ", title='" + title + '\'' +
                 ", url='" + url + '\'' +
                 ", question='" + question + '\'' +
                 ", answer='" + answer + '\'' +
+                ", timestamp='" + timestamp + '\'' +
                 '}';
     }
 }

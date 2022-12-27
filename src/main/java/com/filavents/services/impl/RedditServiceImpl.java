@@ -8,12 +8,14 @@ import jakarta.persistence.EntityManager;
 public class RedditServiceImpl implements RedditService {
     @Override
     public Reddit getRandom() {
+        Reddit reddit;
         EntityManager entityManager = Database.getEntityManagerFactory().createEntityManager();
-        entityManager.getTransaction().begin();
 
-        // get first result in json format
-        Reddit reddit = entityManager.createQuery("SELECT r FROM Reddit r ORDER BY RANDOM()", Reddit.class).setMaxResults(1).getSingleResult();
-        entityManager.close();
+        try {
+            reddit = entityManager.createQuery("SELECT r FROM Reddit r ORDER BY RANDOM()", Reddit.class).setMaxResults(1).getSingleResult();
+        } finally {
+            entityManager.close();
+        }
 
         return reddit;
     }
