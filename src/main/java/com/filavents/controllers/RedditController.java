@@ -4,8 +4,10 @@ import com.filavents.entity.Reddit;
 import com.filavents.services.RedditService;
 import com.filavents.services.impl.RedditServiceImpl;
 import io.vertx.core.Future;
+import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.RoutingContext;
 
+import java.util.Collections;
 import java.util.List;
 
 public class RedditController {
@@ -16,21 +18,25 @@ public class RedditController {
     }
 
     public static Future<Reddit> getRandomAMA(RoutingContext ctx) {
-        Reddit reddit = redditService.getRandom();
-        if (reddit == null) {
-            ctx.response().setStatusCode(404);
-            return Future.failedFuture("No AMA found");
-        }
-        return Future.succeededFuture(reddit);
+        return Future.future(promise -> {
+            Reddit reddit = redditService.getRandom();
+            if (reddit != null) {
+                promise.complete(reddit);
+            } else {
+                promise.complete(new JsonObject().put("error", "No AMA found").mapTo(Reddit.class));
+            }
+        });
     }
 
     public static Future<List<Reddit>> getAMAById(RoutingContext ctx) {
-        String amaId = ctx.request().getParam("amaId");
-        List<Reddit> reddit = redditService.getAllByAmaId(amaId);
-        if (reddit.size() < 1) {
-            ctx.response().setStatusCode(404);
-            return Future.failedFuture("No AMA found");
-        }
-        return Future.succeededFuture(reddit);
+        return Future.future(promise -> {
+            String amaId = ctx.pathParam("amaId");
+            List<Reddit> redditList = redditService.getAllByAmaId(amaId);
+            if (redditList.size() > 0) {
+                promise.complete(redditList);
+            } else {
+                promise.complete(Collections.emptyList());
+            }
+        });
     }
 }
