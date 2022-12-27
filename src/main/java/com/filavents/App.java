@@ -1,5 +1,6 @@
 package com.filavents;
 
+import com.filavents.configs.Database;
 import com.filavents.controllers.RedditController;
 import io.vertx.core.Vertx;
 import io.vertx.core.http.HttpServer;
@@ -12,6 +13,9 @@ public class App {
     static Logger logger = LoggerFactory.getLogger(App.class);
 
     public static void main(String[] args) {
+
+        // Init the EMF
+        Database.getEntityManagerFactory();
 
         Vertx vertx = Vertx.vertx();
         HttpServer server = vertx.createHttpServer();
