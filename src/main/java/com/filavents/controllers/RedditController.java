@@ -1,5 +1,6 @@
 package com.filavents.controllers;
 
+import com.filavents.entity.Reddit;
 import com.filavents.services.RedditService;
 import com.filavents.services.impl.RedditServiceImpl;
 import io.vertx.core.Future;
@@ -13,9 +14,8 @@ public class RedditController {
     private RedditController() {
     }
 
-    public static Future<JsonObject> getRandomAMA(RoutingContext ctx) {
-        System.out.println(redditService.getRandom());
-        JsonObject resp = new JsonObject().put("hello", "world");
-        return Future.succeededFuture(resp);
+    public static Future<Reddit> getRandomAMA(RoutingContext ctx) {
+        Reddit reddit = redditService.getRandom();
+        return Future.succeededFuture(reddit);
     }
 }
