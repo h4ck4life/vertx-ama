@@ -24,6 +24,7 @@ public class App {
         // Middleware code
         router.route().handler(ctx -> {
             ctx.response().putHeader("x-powered-by", "vertx");
+            ctx.response().putHeader("Access-Control-Allow-Origin", "*");
             ctx.next();
         });
 
