@@ -1,0 +1,36 @@
+package com.filavents;
+
+import io.vertx.core.Future;
+import io.vertx.core.Vertx;
+import io.vertx.core.http.HttpServer;
+import io.vertx.core.impl.logging.Logger;
+import io.vertx.core.impl.logging.LoggerFactory;
+import io.vertx.core.json.JsonObject;
+import io.vertx.ext.web.Router;
+
+public class App {
+
+    static Logger logger = LoggerFactory.getLogger(App.class);
+
+    public static void main(String[] args) {
+        Vertx vertx = Vertx.vertx();
+        HttpServer server = vertx.createHttpServer();
+        Router router = Router.router(vertx);
+
+        // Middleware code
+        router.route().handler(ctx -> {
+            ctx.response().putHeader("x-server", "vert.x");
+            ctx.next();
+        });
+
+        router.get("/hello").respond(ctx -> Future.succeededFuture(new JsonObject().put("hello", "world")));
+
+        int runningPort = Integer.parseInt(System.getenv("PORT"));
+        server.requestHandler(router).listen(runningPort).andThen(httpServerAsyncResult -> {
+            if (httpServerAsyncResult.succeeded()) {
+                logger.info("Server started on port: " + runningPort);
+            }
+        });
+
+    }
+}
