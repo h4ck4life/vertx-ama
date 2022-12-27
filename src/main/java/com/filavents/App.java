@@ -18,7 +18,7 @@ public class App {
 
         // Middleware code
         router.route().handler(ctx -> {
-            ctx.response().putHeader("x-server", "vert.x");
+            ctx.response().putHeader("x-powered-by", "vertx");
             ctx.next();
         });
 
