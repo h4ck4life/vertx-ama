@@ -4,7 +4,6 @@ import com.filavents.entity.Reddit;
 import com.filavents.services.RedditService;
 import com.filavents.services.impl.RedditServiceImpl;
 import io.vertx.core.Future;
-import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.RoutingContext;
 
 public class RedditController {
@@ -16,6 +15,10 @@ public class RedditController {
 
     public static Future<Reddit> getRandomAMA(RoutingContext ctx) {
         Reddit reddit = redditService.getRandom();
+        if (reddit == null) {
+            ctx.response().setStatusCode(404);
+            return Future.failedFuture("No AMA found");
+        }
         return Future.succeededFuture(reddit);
     }
 }
