@@ -17,6 +17,7 @@ public class App {
         // Init the EMF
         Database.getEntityManagerFactory();
 
+        // Vertx initialize
         Vertx vertx = Vertx.vertx();
         HttpServer server = vertx.createHttpServer();
         Router router = Router.router(vertx);
@@ -28,9 +29,11 @@ public class App {
             ctx.next();
         });
 
+        // Routers
         router.get("/random").respond(RedditController::getRandomAMA);
         router.get("/ama/:amaId").respond(RedditController::getAMAById);
 
+        // Start the server
         int runningPort = Integer.parseInt(System.getenv("PORT"));
         server.requestHandler(router).listen(runningPort).andThen(httpServerAsyncResult -> {
             if (httpServerAsyncResult.succeeded()) {
