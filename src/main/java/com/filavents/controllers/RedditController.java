@@ -4,9 +4,9 @@ import io.vertx.core.Future;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.RoutingContext;
 
-public class Reddit {
+public class RedditController {
 
-    private Reddit() {
+    private RedditController() {
     }
 
     public static Future<JsonObject> getRandomAMA(RoutingContext ctx) {
