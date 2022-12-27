@@ -29,6 +29,7 @@ public class App {
         });
 
         router.get("/random").respond(RedditController::getRandomAMA);
+        router.get("/ama/:amaId").respond(RedditController::getAMAById);
 
         int runningPort = Integer.parseInt(System.getenv("PORT"));
         server.requestHandler(router).listen(runningPort).andThen(httpServerAsyncResult -> {

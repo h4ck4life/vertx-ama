@@ -9,7 +9,7 @@ import java.util.Objects;
 public class Reddit {
     @Id
     @Column(name = "user_id", nullable = false)
-    private String userId;
+    private String amaId;
 
     @Id
     @Column(name = "QA_ID", nullable = false)
@@ -30,12 +30,12 @@ public class Reddit {
     @Column(name = "timestamp", nullable = false)
     private String timestamp;
 
-    public String getUserId() {
-        return userId;
+    public String getAmaId() {
+        return amaId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setAmaId(String amaId) {
+        this.amaId = amaId;
     }
 
     public String getQaId() {
@@ -91,18 +91,18 @@ public class Reddit {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Reddit reddit = (Reddit) o;
-        return Objects.equals(userId, reddit.userId) && Objects.equals(qaId, reddit.qaId) && Objects.equals(title, reddit.title) && Objects.equals(url, reddit.url) && Objects.equals(question, reddit.question) && Objects.equals(answer, reddit.answer) && Objects.equals(timestamp, reddit.timestamp);
+        return Objects.equals(amaId, reddit.amaId) && Objects.equals(qaId, reddit.qaId) && Objects.equals(title, reddit.title) && Objects.equals(url, reddit.url) && Objects.equals(question, reddit.question) && Objects.equals(answer, reddit.answer) && Objects.equals(timestamp, reddit.timestamp);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, qaId, title, url, question, answer, timestamp);
+        return Objects.hash(amaId, qaId, title, url, question, answer, timestamp);
     }
 
     @Override
     public String toString() {
         return "Reddit{" +
-                "userId='" + userId + '\'' +
+                "userId='" + amaId + '\'' +
                 ", qaId='" + qaId + '\'' +
                 ", title='" + title + '\'' +
                 ", url='" + url + '\'' +
