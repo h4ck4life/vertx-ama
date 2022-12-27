@@ -10,6 +10,7 @@ public class RedditController {
     }
 
     public static Future<JsonObject> getRandomAMA(RoutingContext ctx) {
-        return Future.succeededFuture(new JsonObject().put("hello", "world"));
+        JsonObject resp = new JsonObject().put("hello", "world");
+        return Future.succeededFuture(resp);
     }
 }
