@@ -1,12 +1,12 @@
 package com.filavents;
 
-import io.vertx.core.Future;
+import com.filavents.controllers.Reddit;
 import io.vertx.core.Vertx;
 import io.vertx.core.http.HttpServer;
 import io.vertx.core.impl.logging.Logger;
 import io.vertx.core.impl.logging.LoggerFactory;
-import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Router;
+import io.vertx.ext.web.RoutingContext;
 
 public class App {
 
@@ -23,7 +23,7 @@ public class App {
             ctx.next();
         });
 
-        router.get("/hello").respond(ctx -> Future.succeededFuture(new JsonObject().put("hello", "world")));
+        router.get("/hello").respond(Reddit::getRandomAMA);
 
         int runningPort = Integer.parseInt(System.getenv("PORT"));
         server.requestHandler(router).listen(runningPort).andThen(httpServerAsyncResult -> {
