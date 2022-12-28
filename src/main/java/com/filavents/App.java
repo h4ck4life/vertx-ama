@@ -37,12 +37,12 @@ public class App {
 
         // Routers
         router.get("/api/random").respond(RedditController::getRandomAMA);
-        router.get("/api/id/:amaId").respond(RedditController::getAMAById);
-        router.get("/api/id/:amaId/page/:page").respond(RedditController::getAMAById);
+        router.get("/api/:amaId").respond(RedditController::getAMAById);
+        router.get("/api/:amaId/page/:page").respond(RedditController::getAMAById);
         router.get("/api/search/:keyword").respond(RedditController::getAMAByKeyword);
         router.get("/api/search/:keyword/page/:page").respond(RedditController::getAMAByKeyword);
 
-        // setWebRoot
+        // Set static web root
         router.route("/*").handler(StaticHandler.create().setWebRoot("web/reddit-ama-web/dist/reddit-ama-web"));
 
         // Start the server
