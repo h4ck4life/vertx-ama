@@ -34,8 +34,6 @@ public class App {
             ctx.response().sendFile("web/reddit-ama/out/index.html");
         });
 
-
-
         // Routers
         router.get("/random").respond(RedditController::getRandomAMA);
         router.get("/id/:amaId").respond(RedditController::getAMAById);
