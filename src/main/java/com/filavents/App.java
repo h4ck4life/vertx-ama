@@ -7,6 +7,7 @@ import io.vertx.core.http.HttpServer;
 import io.vertx.core.impl.logging.Logger;
 import io.vertx.core.impl.logging.LoggerFactory;
 import io.vertx.ext.web.Router;
+import io.vertx.ext.web.handler.StaticHandler;
 
 public class App {
 
@@ -31,15 +32,18 @@ public class App {
 
         // setindexpage return index.html page
         router.get("/").handler(ctx -> {
-            ctx.response().sendFile("web/index.html");
+            ctx.response().sendFile("web/reddit-ama-web/dist/reddit-ama-web/index.html");
         });
 
         // Routers
-        router.get("/random").respond(RedditController::getRandomAMA);
-        router.get("/id/:amaId").respond(RedditController::getAMAById);
-        router.get("/id/:amaId/page/:page").respond(RedditController::getAMAById);
-        router.get("/search/:keyword").respond(RedditController::getAMAByKeyword);
-        router.get("/search/:keyword/page/:page").respond(RedditController::getAMAByKeyword);
+        router.get("/api/random").respond(RedditController::getRandomAMA);
+        router.get("/api/id/:amaId").respond(RedditController::getAMAById);
+        router.get("/api/id/:amaId/page/:page").respond(RedditController::getAMAById);
+        router.get("/api/search/:keyword").respond(RedditController::getAMAByKeyword);
+        router.get("/api/search/:keyword/page/:page").respond(RedditController::getAMAByKeyword);
+
+        // setWebRoot
+        router.route("/*").handler(StaticHandler.create().setWebRoot("web/reddit-ama-web/dist/reddit-ama-web"));
 
         // Start the server
         int runningPort = Integer.parseInt(System.getenv("PORT"));
