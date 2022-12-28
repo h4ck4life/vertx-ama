@@ -31,7 +31,7 @@ public class App {
 
         // setindexpage return index.html page
         router.get("/").handler(ctx -> {
-            ctx.response().sendFile("web/reddit-ama/out/index.html");
+            ctx.response().sendFile("web/index.html");
         });
 
         // Routers
