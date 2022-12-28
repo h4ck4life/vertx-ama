@@ -20,7 +20,12 @@ public class RedditServiceImpl implements RedditService {
         EntityManager entityManager = Database.getEntityManagerFactory().createEntityManager();
 
         try {
-            reddit = entityManager.createQuery("SELECT r FROM Reddit r ORDER BY RANDOM()", Reddit.class).setMaxResults(1).getSingleResult();
+            reddit = entityManager.createQuery(
+                            "SELECT r FROM Reddit r ORDER BY RANDOM()",
+                            Reddit.class
+                    )
+                    .setMaxResults(1)
+                    .getSingleResult();
         } catch (Exception e) {
             reddit = null;
             logger.error(e.getMessage());
@@ -32,12 +37,42 @@ public class RedditServiceImpl implements RedditService {
     }
 
     @Override
-    public List<Reddit> getAllByAmaId(String amaId) {
+    public List<Reddit> getAllByAmaId(String amaId, int limit, int offset) {
         List<Reddit> redditList = new ArrayList<>();
         EntityManager entityManager = Database.getEntityManagerFactory().createEntityManager();
 
         try {
-            redditList = entityManager.createQuery("SELECT r FROM Reddit r WHERE r.amaId = :amaId", Reddit.class).setParameter("amaId", amaId).getResultList();
+            redditList = entityManager.createQuery(
+                            "SELECT r FROM Reddit r WHERE r.amaId = :amaId",
+                            Reddit.class
+                    )
+                    .setParameter("amaId", amaId)
+                    .setMaxResults(limit)
+                    .setFirstResult(offset)
+                    .getResultList();
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        } finally {
+            entityManager.close();
+        }
+
+        return redditList;
+    }
+
+    @Override
+    public List<Reddit> getAllByKeyword(String keyword, int limit, int offset) {
+        List<Reddit> redditList = new ArrayList<>();
+        EntityManager entityManager = Database.getEntityManagerFactory().createEntityManager();
+
+        try {
+            redditList = entityManager.createQuery(
+                            "SELECT r FROM Reddit r WHERE r.title LIKE :keyword",
+                            Reddit.class
+                    )
+                    .setParameter("keyword", "%" + keyword + "%")
+                    .setMaxResults(limit)
+                    .setFirstResult(offset)
+                    .getResultList();
         } catch (Exception e) {
             logger.error(e.getMessage());
         } finally {

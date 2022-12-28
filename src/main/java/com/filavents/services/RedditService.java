@@ -6,5 +6,8 @@ import java.util.List;
 
 public interface RedditService {
     Reddit getRandom();
-    List<Reddit> getAllByAmaId(String amaId);
+
+    List<Reddit> getAllByAmaId(String amaId, int limit, int offset);
+
+    List<Reddit> getAllByKeyword(String keyword, int limit, int offset);
 }

@@ -13,6 +13,7 @@ import java.util.List;
 public class RedditController {
 
     private static final RedditService redditService = new RedditServiceImpl();
+    private static final int LIMIT = 10;
 
     private RedditController() {
     }
@@ -31,7 +32,7 @@ public class RedditController {
     public static Future<List<Reddit>> getAMAById(RoutingContext ctx) {
         return Future.future(promise -> {
             String amaId = ctx.pathParam("amaId");
-            List<Reddit> redditList = redditService.getAllByAmaId(amaId);
+            List<Reddit> redditList = redditService.getAllByAmaId(amaId, LIMIT, getOffset(ctx));
             if (redditList.size() > 0) {
                 promise.complete(redditList);
             } else {
@@ -39,4 +40,22 @@ public class RedditController {
             }
         });
     }
+
+    public static Future<List<Reddit>> getAMAByKeyword(RoutingContext ctx) {
+        return Future.future(promise -> {
+            String keyword = ctx.pathParam("keyword");
+            List<Reddit> redditList = redditService.getAllByKeyword(keyword, LIMIT, getOffset(ctx));
+            if (redditList.size() > 0) {
+                promise.complete(redditList);
+            } else {
+                promise.complete(Collections.emptyList());
+            }
+        });
+    }
+
+    private static int getOffset(RoutingContext ctx) {
+        int page = ctx.pathParam("page") == null ? 1 : Integer.parseInt(ctx.pathParam("page"));
+        return (page - 1) * LIMIT;
+    }
+
 }

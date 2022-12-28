@@ -31,7 +31,10 @@ public class App {
 
         // Routers
         router.get("/random").respond(RedditController::getRandomAMA);
-        router.get("/ama/:amaId").respond(RedditController::getAMAById);
+        router.get("/id/:amaId").respond(RedditController::getAMAById);
+        router.get("/id/:amaId/page/:page").respond(RedditController::getAMAById);
+        router.get("/search/:keyword").respond(RedditController::getAMAByKeyword);
+        router.get("/search/:keyword/page/:page").respond(RedditController::getAMAByKeyword);
 
         // Start the server
         int runningPort = Integer.parseInt(System.getenv("PORT"));
