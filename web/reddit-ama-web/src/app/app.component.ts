@@ -28,7 +28,9 @@ export class AppComponent {
   ngOnInit(): void {
     this.appService.getReddit().subscribe((data) => {
       this.reddit = data;
-      this.reddit.body = linkifyHtml(this.reddit.body as string, { target: "_blankß" });
+      this.reddit.body = linkifyHtml(this.reddit.body as string, { target: "_blank" });
+      this.reddit.answer = linkifyHtml(this.reddit.answer as string, { target: "_blank" });
+      this.reddit.question = linkifyHtml(this.reddit.question as string, { target: "_blank" });
       this.isRandomAMALoaded = true;
     });
   }
