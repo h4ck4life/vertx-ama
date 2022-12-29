@@ -12,7 +12,7 @@
   <div class="mt-6 cursor-pointer" (click)="showDescription()">
     <span class="font-semibold text-red-400">Description</span>
     <span class="text-gray-600 text-lg ml-2 italic"
-      >(Click to {{ isShowDescription ? "hide" : "show" }})</span
+      >({{ isShowDescription ? "less" : "more" }})</span
     >
   </div>
   <div
@@ -50,7 +50,7 @@
           class="text-red-400"
           routerLinkActive="active"
           ariaCurrentWhenActive="page"
-          >(Click to see more)</a
+          >(See more)</a
         >
       </span>
     </span>
