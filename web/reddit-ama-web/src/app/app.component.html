@@ -1,32 +1,30 @@
-<div class="p-4">
+<div class="p-6">
   <div class="top">
     <span class="text-3xl text-red-400">
       <fa-icon [icon]="faRedditAlien"></fa-icon>
     </span>
-    <span class="text-2xl font-bold text-red-400"> Reddit</span>
-    <span class="text-2xl font-light"> AMA</span>
+    <span class="text-3xl font-bold text-red-400"> Reddit</span>
+    <span class="text-3xl font-light"> AMA</span>
   </div>
   <div *ngIf="isRandomAMALoaded; else elseBlock" class="middle">
-    <div class="mt-4">
+    <div class="mt-4 flex flex-row">
       <span class="font-semibold text-red-400">Title</span>
+      <div class="flex-grow text-right truncate">
+        <span class="font-semibold text-gray-600">{{ reddit.timestamp }}</span>
+      </div>
     </div>
-    <div class="text-gray-400">
-      {{ reddit.title }}
-    </div>
+    <div class="text-gray-400 text-2xl" [innerHTML]="reddit.title"></div>
 
     <div class="mt-4">
       <span class="font-semibold text-red-400">Question</span>
+      <span class="font-semibold text-red-400 ml-2">#{{ reddit.qaId }}</span>
     </div>
-    <div class="text-gray-400">
-      {{ reddit.question }}
-    </div>
+    <div class="text-gray-400 text-2xl" [innerHTML]="reddit.question"></div>
 
     <div class="mt-4">
       <span class="font-semibold text-red-400">Answer</span>
     </div>
-    <div class="text-gray-400">
-      {{ reddit.answer }}
-    </div>
+    <div class="text-gray-400 text-2xl" [innerHTML]="reddit.answer"></div>
 
     <div class="mt-4">
       <span class="font-semibold text-red-400">Source</span>
@@ -38,7 +36,12 @@
   <ng-template #elseBlock>
     <div class="text-center">
       <div class="mt-4">
-        <fa-icon [icon]="faCircleNotch" [spin]="true" style="--fa-animation-duration: 0.7s;" class="text-gray-700 fa-2x"></fa-icon>
+        <fa-icon
+          [icon]="faCircleNotch"
+          [spin]="true"
+          style="--fa-animation-duration: 0.7s"
+          class="text-gray-700 fa-2x"
+        ></fa-icon>
       </div>
     </div>
   </ng-template>
