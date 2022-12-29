@@ -21,6 +21,9 @@ public class Reddit {
     @Column(name = "url", nullable = false)
     private String url;
 
+    @Column(name = "body", nullable = false)
+    private String body;
+
     @Column(name = "question", nullable = false)
     private String question;
 
@@ -32,6 +35,14 @@ public class Reddit {
 
     @Transient
     private String error;
+
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
 
     public String getError() {
         return error;
@@ -113,13 +124,15 @@ public class Reddit {
     @Override
     public String toString() {
         return "Reddit{" +
-                "userId='" + amaId + '\'' +
+                "amaId='" + amaId + '\'' +
                 ", qaId='" + qaId + '\'' +
                 ", title='" + title + '\'' +
                 ", url='" + url + '\'' +
+                ", body='" + body + '\'' +
                 ", question='" + question + '\'' +
                 ", answer='" + answer + '\'' +
                 ", timestamp='" + timestamp + '\'' +
+                ", error='" + error + '\'' +
                 '}';
     }
 }

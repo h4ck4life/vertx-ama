@@ -7,7 +7,7 @@
     <span class="text-3xl font-light"> AMA</span>
   </div>
   <div *ngIf="isRandomAMALoaded; else elseBlock" class="middle">
-    <div class="mt-4 flex flex-row">
+    <div class="mt-6 flex flex-row">
       <span class="font-semibold text-red-400">Title</span>
       <div class="flex-grow text-right truncate">
         <span class="font-semibold text-gray-600">{{ reddit.timestamp }}</span>
@@ -15,18 +15,24 @@
     </div>
     <div class="text-gray-400 text-2xl" [innerHTML]="reddit.title"></div>
 
-    <div class="mt-4">
+    <div class="mt-6">
+      <span class="font-semibold text-red-400">Description</span>
+    </div>
+    <div class="text-gray-400 text-2xl break-words" [innerHTML]="reddit.body || 'None.'"></div>
+
+    <div class="mt-6">
       <span class="font-semibold text-red-400">Question</span>
       <span class="font-semibold text-red-400 ml-2">#{{ reddit.qaId }}</span>
     </div>
-    <div class="text-gray-400 text-2xl" [innerHTML]="reddit.question"></div>
+    <div class="text-gray-400 text-2xl break-normal" [innerHTML]="reddit.question"></div>
 
-    <div class="mt-4">
+    <div class="mt-6">
       <span class="font-semibold text-red-400">Answer</span>
+      <span class="font-semibold text-red-400 ml-2">#{{ reddit.qaId }}</span>
     </div>
-    <div class="text-gray-400 text-2xl" [innerHTML]="reddit.answer"></div>
+    <div class="text-gray-400 text-2xl break-normal" [innerHTML]="reddit.answer"></div>
 
-    <div class="mt-4">
+    <div class="mt-6">
       <span class="font-semibold text-red-400">Source</span>
     </div>
     <div class="text-gray-500 truncate">
@@ -35,7 +41,7 @@
   </div>
   <ng-template #elseBlock>
     <div class="text-center">
-      <div class="mt-4">
+      <div class="mt-6">
         <fa-icon
           [icon]="faCircleNotch"
           [spin]="true"
