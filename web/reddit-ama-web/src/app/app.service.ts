@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, isDevMode } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { Reddit } from './Reddit';
 
@@ -10,10 +10,12 @@ export class AppService {
 
   constructor(private http: HttpClient) { }
 
-  private redditUrl = 'api/random';
-
   getReddit(): Observable<Reddit> {
-    return this.http.get<Reddit>(this.redditUrl)
+    return this.http.get<Reddit>(this.getAPIUrl())
+  }
+
+  private getAPIUrl(): string {
+    return isDevMode() ? 'http://localhost:8080/api/random' : 'api/random';
   }
 
 }

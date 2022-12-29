@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { faRedditAlien } from '@fortawesome/free-brands-svg-icons';
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import { AppService } from './app.service';
 import { Reddit } from './Reddit';
 
@@ -10,6 +11,7 @@ import { Reddit } from './Reddit';
 })
 export class AppComponent {
   faRedditAlien = faRedditAlien;
+  faCircleNotch = faCircleNotch;
   isRandomAMALoaded = false;
   reddit: Reddit = {};
 
