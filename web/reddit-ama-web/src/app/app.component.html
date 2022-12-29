@@ -15,10 +15,12 @@
     </div>
     <div class="text-gray-400 text-2xl" [innerHTML]="reddit.title"></div>
 
-    <div class="mt-6">
+    <div class="mt-6 cursor-pointer" (click)="showDescription()">
       <span class="font-semibold text-red-400">Description</span>
+      <span class="text-gray-600 text-lg ml-2 italic">(Click to show)</span>
     </div>
     <div
+      *ngIf="isShowDescription"
       class="text-gray-400 text-2xl break-words"
       [innerHTML]="reddit.body || '[Empty]'"
     ></div>

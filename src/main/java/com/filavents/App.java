@@ -4,6 +4,7 @@ import com.filavents.configs.Database;
 import com.filavents.controllers.RedditController;
 import io.vertx.core.Vertx;
 import io.vertx.core.http.HttpServer;
+import io.vertx.core.http.HttpServerOptions;
 import io.vertx.core.impl.logging.Logger;
 import io.vertx.core.impl.logging.LoggerFactory;
 import io.vertx.ext.web.Router;
@@ -20,7 +21,13 @@ public class App {
 
         // Vertx initialize
         Vertx vertx = Vertx.vertx();
-        HttpServer server = vertx.createHttpServer();
+
+        // Init HTTP server
+        HttpServerOptions serverOptions = new HttpServerOptions();
+        serverOptions.setCompressionSupported(true);
+        HttpServer server = vertx.createHttpServer(serverOptions);
+
+        // Init Router
         Router router = Router.router(vertx);
 
         // Middleware code

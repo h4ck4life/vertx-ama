@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { faRedditAlien } from '@fortawesome/free-brands-svg-icons';
-import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
+import { faCircleNotch, faAnglesDown } from '@fortawesome/free-solid-svg-icons';
 
 import * as linkify from 'linkifyjs';
 import linkifyHtml from 'linkify-html';
@@ -16,9 +16,16 @@ import { Reddit } from './Reddit';
 })
 export class AppComponent {
 
+  // Icons
   faRedditAlien = faRedditAlien;
   faCircleNotch = faCircleNotch;
+  faAnglesDown = faAnglesDown;  
+
+  // Toggles
   isRandomAMALoaded = false;
+  isShowDescription = false;
+
+  // 3rd libraries
   linkifyHtml = linkifyHtml;
 
   reddit: Reddit = {};
@@ -33,6 +40,10 @@ export class AppComponent {
       this.reddit.question = linkifyHtml(this.reddit.question as string, { target: "_blank" });
       this.isRandomAMALoaded = true;
     });
+  }
+
+  showDescription(): void {
+    this.isShowDescription = !this.isShowDescription;
   }
 
 }
