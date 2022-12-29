@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
+
 import { faRedditAlien } from '@fortawesome/free-brands-svg-icons';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
+
+import * as linkify from 'linkifyjs';
+import linkifyHtml from 'linkify-html';
+
 import { AppService } from './app.service';
 import { Reddit } from './Reddit';
 
@@ -10,9 +15,12 @@ import { Reddit } from './Reddit';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
   faRedditAlien = faRedditAlien;
   faCircleNotch = faCircleNotch;
   isRandomAMALoaded = false;
+  linkifyHtml = linkifyHtml;
+
   reddit: Reddit = {};
 
   constructor(private appService: AppService) { }
@@ -20,6 +28,7 @@ export class AppComponent {
   ngOnInit(): void {
     this.appService.getReddit().subscribe((data) => {
       this.reddit = data;
+      this.reddit.body = linkifyHtml(this.reddit.body as string, { target: "_blankß" });
       this.isRandomAMALoaded = true;
     });
   }

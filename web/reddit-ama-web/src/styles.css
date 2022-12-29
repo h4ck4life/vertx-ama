@@ -4,6 +4,11 @@
 @tailwind utilities;
 
 body {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.2rem;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.2rem;
+}
+
+a {
+  color: #9f5698;
+  text-decoration: none;
 }
