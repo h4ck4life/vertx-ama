@@ -49,6 +49,11 @@ public class App {
             ctx.response().sendFile("web/reddit-ama-web/dist/reddit-ama-web/index.html");
         });
 
+        router.get("/view/*").handler(ctx -> {
+            ctx.response().sendFile("web/reddit-ama-web/dist/reddit-ama-web/index.html");
+        });
+
+
         // Set static web root
         router.route("/*").handler(StaticHandler.create().setWebRoot("web/reddit-ama-web/dist/reddit-ama-web"));
 
