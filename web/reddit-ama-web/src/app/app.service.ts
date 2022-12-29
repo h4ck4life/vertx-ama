@@ -11,11 +11,15 @@ export class AppService {
   constructor(private http: HttpClient) { }
 
   getReddit(): Observable<Reddit> {
-    return this.http.get<Reddit>(this.getAPIUrl())
+    return this.http.get<Reddit>(this.getHostname() + '/api/random')
   }
 
-  private getAPIUrl(): string {
-    return isDevMode() ? 'http://localhost:8080/api/random' : 'api/random';
+  getAllRedditById(id: string): Observable<Reddit[]> {
+    return this.http.get<Reddit[]>(this.getHostname() + '/api/' + id)
+  }
+
+  private getHostname(): string {
+    return isDevMode() ? 'http://localhost:8080' : '';
   }
 
 }

@@ -37,17 +37,17 @@ public class App {
             ctx.next();
         });
 
-        // setindexpage return index.html page
-        router.get("/").handler(ctx -> {
-            ctx.response().sendFile("web/reddit-ama-web/dist/reddit-ama-web/index.html");
-        });
-
         // Routers
         router.get("/api/random").respond(RedditController::getRandomAMA);
         router.get("/api/:amaId").respond(RedditController::getAMAById);
         router.get("/api/:amaId/page/:page").respond(RedditController::getAMAById);
         router.get("/api/search/:keyword").respond(RedditController::getAMAByKeyword);
         router.get("/api/search/:keyword/page/:page").respond(RedditController::getAMAByKeyword);
+
+        // setindexpage return index.html page
+        router.get("/").handler(ctx -> {
+            ctx.response().sendFile("web/reddit-ama-web/dist/reddit-ama-web/index.html");
+        });
 
         // Set static web root
         router.route("/*").handler(StaticHandler.create().setWebRoot("web/reddit-ama-web/dist/reddit-ama-web"));

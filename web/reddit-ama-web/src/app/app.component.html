@@ -6,62 +6,9 @@
     <span class="text-3xl font-bold text-red-400"> Reddit</span>
     <span class="text-3xl font-light"> AMA</span>
   </div>
-  <div *ngIf="isRandomAMALoaded; else elseBlock" class="middle">
-    <div class="mt-6 flex flex-row">
-      <span class="font-semibold text-red-400">Title</span>
-      <div class="flex-grow text-right truncate">
-        <span class="font-semibold text-gray-600">{{ reddit.timestamp }}</span>
-      </div>
-    </div>
-    <div class="text-gray-400 text-2xl" [innerHTML]="reddit.title"></div>
 
-    <div class="mt-6 cursor-pointer" (click)="showDescription()">
-      <span class="font-semibold text-red-400">Description</span>
-      <span class="text-gray-600 text-lg ml-2 italic">(Click to show)</span>
-    </div>
-    <div
-      *ngIf="isShowDescription"
-      class="text-gray-400 text-2xl break-words"
-      [innerHTML]="reddit.body || '[Empty]'"
-    ></div>
+  <router-outlet></router-outlet>
 
-    <div class="mt-6">
-      <span class="font-semibold text-red-400">Question</span>
-      <span class="font-semibold text-red-400 ml-2">#{{ reddit.qaId }}</span>
-    </div>
-    <div
-      class="text-gray-400 text-2xl break-normal"
-      [innerHTML]="reddit.question"
-    ></div>
-
-    <div class="mt-6">
-      <span class="font-semibold text-red-400">Answer</span>
-      <span class="font-semibold text-red-400 ml-2">#{{ reddit.qaId }}</span>
-    </div>
-    <div
-      class="text-gray-400 text-2xl break-normal"
-      [innerHTML]="reddit.answer"
-    ></div>
-
-    <div class="mt-6">
-      <span class="font-semibold text-red-400">Source</span>
-    </div>
-    <div class="text-2xl truncate">
-      <a href="{{ reddit.url }}" target="_blank">{{ reddit.url }}</a>
-    </div>
-  </div>
-  <ng-template #elseBlock>
-    <div class="text-center">
-      <div class="mt-6">
-        <fa-icon
-          [icon]="faCircleNotch"
-          [spin]="true"
-          style="--fa-animation-duration: 0.7s"
-          class="text-gray-700 fa-2x"
-        ></fa-icon>
-      </div>
-    </div>
-  </ng-template>
   <div class="footer">
     <div class="text-sm text-center mt-5 text-gray-700 font-light">
       Made with love by
@@ -69,3 +16,4 @@
     </div>
   </div>
 </div>
+
