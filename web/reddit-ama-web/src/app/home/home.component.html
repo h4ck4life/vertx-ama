@@ -21,19 +21,18 @@
     [innerHTML]="reddit.body || '[Empty]'"
   ></div>
 
-  <hr class="border-gray-700 border-opacity-60 mt-6" />
+  <hr class="border-gray-700 border-opacity-40 mt-6" />
 
   <!-- Question -->
   <div class="mt-6">
-    <span class="font-semibold text-red-400">#{{ reddit.qaId }}</span>
+    <span class="font-semibold text-red-400">{{ reddit.qaId }}.</span>
     <span class="font-semibold text-red-400 ml-2">Question</span>
   </div>
   <div class="text-xl break-normal" [innerHTML]="reddit.question"></div>
 
   <!-- Answer -->
   <div class="mt-6">
-    <span class="font-semibold text-red-400">#{{ reddit.qaId }}</span>
-    <span class="font-semibold text-red-400 ml-2">Answer</span>
+    <span class="font-semibold text-red-400">Answer</span>
   </div>
   <div class="text-xl break-normal" [innerHTML]="reddit.answer"></div>
 
@@ -56,7 +55,7 @@
   <div class="mt-6">
     <span class="font-semibold text-red-400">Source</span>
   </div>
-  <div class="text-2xl truncate">
+  <div class="text-xl truncate">
     <a href="{{ reddit.url }}" target="_blank">{{ reddit.url }}</a>
   </div>
 </div>

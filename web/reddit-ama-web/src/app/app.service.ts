@@ -14,8 +14,8 @@ export class AppService {
     return this.http.get<Reddit>(this.getHostname() + '/api/random')
   }
 
-  getAllRedditById(id: string): Observable<Reddit[]> {
-    return this.http.get<Reddit[]>(this.getHostname() + '/api/' + id)
+  getAllRedditById(id: string, page: number): Observable<Reddit[]> {
+    return this.http.get<Reddit[]>(this.getHostname() + '/api/' + id + '/page/' + page)
   }
 
   private getHostname(): string {
