@@ -6,6 +6,7 @@
 body {
   font-family: "Source Sans Pro", sans-serif;
   font-size: 1.1em;
+  background-image: linear-gradient( 174.2deg,  rgba(255,244,228,1) 7.1%, rgba(240,246,238,1) 67.4% );
 }
 
 a {
@@ -14,5 +15,5 @@ a {
 }
 
 .card-view {
-  background-color: #dbdbdd;
+  background-color: #f6f6f6;
 }
