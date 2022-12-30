@@ -1,15 +1,22 @@
 <div class="p-6">
-  <div
-    class="top cursor-pointer mb-8"
-    routerLink=""
-    routerLinkActive="active"
-    ariaCurrentWhenActive="page"
-  >
-    <span class="text-3xl text-red-500">
-      <fa-icon [icon]="faRedditAlien"></fa-icon>
-    </span>
-    <span class="text-3xl font-bold text-red-500"> Reddit</span>
-    <span class="text-3xl font-light"> AMA</span>
+  <div class="flex flex-row">
+    <div
+      class="top cursor-pointer mb-8"
+      routerLink=""
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page"
+    >
+      <span class="text-3xl text-red-500">
+        <fa-icon [icon]="faRedditAlien"></fa-icon>
+      </span>
+      <span class="text-3xl font-bold text-red-500"> Reddit</span>
+      <span class="text-3xl font-light"> AMA</span>
+    </div>
+    <div class="flex-grow text-end">
+      <span class="text-2xl text-red-400 align-middle">
+        <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
+      </span>
+    </div>
   </div>
 
   <router-outlet></router-outlet>

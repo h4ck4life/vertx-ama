@@ -4,9 +4,8 @@
 @tailwind utilities;
 
 body {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   font-size: 1.1em;
-  text-shadow: 2px #7c7c7c;
 }
 
 a {
