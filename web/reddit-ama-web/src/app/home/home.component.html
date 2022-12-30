@@ -6,7 +6,7 @@
       <span class="font-semibold text-gray-600">{{ reddit.timestamp }}</span>
     </div>
   </div>
-  <div class="text-gray-400 text-2xl" [innerHTML]="reddit.title"></div>
+  <div class="text-xl" [innerHTML]="reddit.title"></div>
 
   <!-- Description -->
   <div class="mt-6 cursor-pointer" (click)="showDescription()">
@@ -17,7 +17,7 @@
   </div>
   <div
     *ngIf="isShowDescription"
-    class="text-gray-400 text-2xl break-words"
+    class="text-xl break-words"
     [innerHTML]="reddit.body || '[Empty]'"
   ></div>
 
@@ -27,7 +27,7 @@
     <span class="font-semibold text-red-400 ml-2">#{{ reddit.qaId }}</span>
   </div>
   <div
-    class="text-gray-400 text-2xl break-normal"
+    class="text-xl break-normal"
     [innerHTML]="reddit.question"
   ></div>
 
@@ -37,7 +37,7 @@
     <span class="font-semibold text-red-400 ml-2">#{{ reddit.qaId }}</span>
   </div>
   <div
-    class="text-gray-400 text-2xl break-normal"
+    class="text-xl break-normal"
     [innerHTML]="reddit.answer"
   ></div>
 

@@ -26,6 +26,7 @@ export class HomeComponent {
   // 3rd libraries
   linkifyHtml = linkifyHtml;
 
+  // Data
   reddit: Reddit = {};
 
   constructor(private appService: AppService) { }

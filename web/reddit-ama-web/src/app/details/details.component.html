@@ -1,1 +1,78 @@
-<p>details works!</p>
+<div *ngIf="isRandomAMALoaded; else elseBlock" class="middle">
+  <!-- Title -->
+  <div class="mt-6 flex flex-row">
+    <span class="font-semibold text-red-400">Title</span>
+    <div class="flex-grow text-right truncate">
+      <span class="font-semibold text-gray-600">{{
+        redditList[0].timestamp
+      }}</span>
+    </div>
+  </div>
+  <div class="text-xl" [innerHTML]="redditList[0].title"></div>
+
+  <!-- Description -->
+  <div class="mt-6 cursor-pointer" (click)="showDescription()">
+    <span class="font-semibold text-red-400">Description</span>
+    <span class="text-gray-600 text-lg ml-2 italic"
+      >({{ isShowDescription ? "less" : "more" }})</span
+    >
+  </div>
+  <div
+    *ngIf="isShowDescription"
+    class="text-xl break-words"
+    [innerHTML]="redditList[0].body || '[Empty]'"
+  ></div>
+
+  <div *ngFor="let reddit of redditList">
+    <!-- Question -->
+    <div class="mt-6">
+      <span class="font-semibold text-red-400">Question</span>
+      <span class="font-semibold text-red-400 ml-2">#{{ reddit.qaId }}</span>
+    </div>
+    <div class="text-xl break-normal" [innerHTML]="reddit.question"></div>
+
+    <!-- Answer -->
+    <div class="mt-6">
+      <span class="font-semibold text-red-400">Answer</span>
+      <span class="font-semibold text-red-400 ml-2">#{{ reddit.qaId }}</span>
+    </div>
+    <div class="text-xl break-normal" [innerHTML]="reddit.answer"></div>
+  </div>
+
+  <!-- View more -->
+  <div class="mt-6 text-center">
+    <span class="font-semibold text-red-400">
+      <span class="text-xl ml-2 italic">
+        <a
+          routerLink="/view/{{ redditList[0].amaId }}"
+          class="text-red-400"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+          >(See more)</a
+        >
+      </span>
+    </span>
+  </div>
+
+  <!-- Source-->
+  <div class="mt-6">
+    <span class="font-semibold text-red-400">Source</span>
+  </div>
+  <div class="text-2xl truncate">
+    <a href="{{ redditList[0].url }}" target="_blank">{{
+      redditList[0].url
+    }}</a>
+  </div>
+</div>
+<ng-template #elseBlock>
+  <div class="text-center">
+    <div class="mt-6">
+      <fa-icon
+        [icon]="faCircleNotch"
+        [spin]="true"
+        style="--fa-animation-duration: 0.7s"
+        class="text-gray-700 fa-2x"
+      ></fa-icon>
+    </div>
+  </div>
+</ng-template>
