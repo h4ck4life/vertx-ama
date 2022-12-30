@@ -4,8 +4,7 @@
 @tailwind utilities;
 
 body {
-  font-family: "Cormorant Garamond", serif;
-  font-size: 1.2rem;
+  font-family: 'Source Sans Pro', sans-serif;
   text-shadow: 2px #7c7c7c;
 }
 

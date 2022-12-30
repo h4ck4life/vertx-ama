@@ -9,18 +9,18 @@
         }}</span>
       </div>
     </div>
-    <div class="text-xl" [innerHTML]="redditList[0].title"></div>
+    <div class="" [innerHTML]="redditList[0].title"></div>
 
     <!-- Description -->
     <div class="mt-6 cursor-pointer" (click)="showDescription()">
       <span class="font-semibold text-red-500">Description</span>
-      <span class="text-gray-600 text-lg ml-2 italic"
+      <span class="text-gray-600 text-sm ml-2 italic"
         >({{ isShowDescription ? "less" : "more" }})</span
       >
     </div>
     <div
       *ngIf="isShowDescription"
-      class="text-xl break-words"
+      class="break-words"
       [innerHTML]="redditList[0].body || '[Empty]'"
     ></div>
 
@@ -31,19 +31,19 @@
         <span class="font-semibold text-red-500">{{ reddit.qaId }}.</span>
         <span class="font-semibold text-red-500 ml-2">Question</span>
       </div>
-      <div class="text-xl break-normal" [innerHTML]="reddit.question"></div>
+      <div class="break-normal" [innerHTML]="reddit.question"></div>
 
       <!-- Answer -->
       <div class="mt-6">
         <span class="font-semibold text-red-500">Answer</span>
       </div>
-      <div class="text-xl break-normal" [innerHTML]="reddit.answer"></div>
+      <div class="break-normal" [innerHTML]="reddit.answer"></div>
     </div>
 
     <!-- View more -->
     <div *ngIf="!hideSeeMore" class="mt-6 text-center">
       <span class="font-semibold text-red-500 cursor-pointer">
-        <span class="text-xl ml-2 italic">
+        <span class="ml-2 italic">
           <a
             (click)="viewMore()"
             class="text-red-500"
@@ -57,7 +57,7 @@
     <div class="mt-6">
       <span class="font-semibold text-red-500">Source</span>
     </div>
-    <div class="text-xl truncate">
+    <div class="truncate">
       <a href="{{ redditList[0].url }}" target="_blank">{{
         redditList[0].url
       }}</a>
@@ -78,7 +78,7 @@
         [icon]="faCircleNotch"
         [spin]="true"
         style="--fa-animation-duration: 0.7s"
-        class="text-gray-700 fa-2x"
+        class="text-gray-400 fa-2x"
       ></fa-icon>
     </div>
   </div>

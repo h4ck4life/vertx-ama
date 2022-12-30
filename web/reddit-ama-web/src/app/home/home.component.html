@@ -6,18 +6,18 @@
       <span class="font-semibold text-gray-600">{{ reddit.timestamp }}</span>
     </div>
   </div>
-  <div class="text-xl" [innerHTML]="reddit.title"></div>
+  <div class="" [innerHTML]="reddit.title"></div>
 
   <!-- Description -->
   <div class="mt-6 cursor-pointer" (click)="showDescription()">
     <span class="font-semibold text-red-500">Description</span>
-    <span class="text-gray-600 text-lg ml-2 italic"
+    <span class="text-gray-600 text-sm ml-2 italic"
       >({{ isShowDescription ? "less" : "more" }})</span
     >
   </div>
   <div
     *ngIf="isShowDescription"
-    class="text-xl break-words"
+    class="break-words"
     [innerHTML]="reddit.body || '[Empty]'"
   ></div>
 
@@ -28,18 +28,18 @@
     <span class="font-semibold text-red-500">{{ reddit.qaId }}.</span>
     <span class="font-semibold text-red-500 ml-2">Question</span>
   </div>
-  <div class="text-xl break-normal" [innerHTML]="reddit.question"></div>
+  <div class="break-normal" [innerHTML]="reddit.question"></div>
 
   <!-- Answer -->
   <div class="mt-6">
     <span class="font-semibold text-red-500">Answer</span>
   </div>
-  <div class="text-xl break-normal" [innerHTML]="reddit.answer"></div>
+  <div class="break-normal" [innerHTML]="reddit.answer"></div>
 
   <!-- View more -->
   <div class="mt-6 text-center">
     <span class="font-semibold text-red-500">
-      <span class="text-xl ml-2 italic">
+      <span class="ml-2 italic">
         <a
           routerLink="/view/{{ reddit.amaId }}"
           class="text-red-500"
@@ -55,7 +55,7 @@
   <div class="mt-6">
     <span class="font-semibold text-red-500">Source</span>
   </div>
-  <div class="text-xl truncate">
+  <div class=" truncate">
     <a href="{{ reddit.url }}" target="_blank">{{ reddit.url }}</a>
   </div>
 </div>
@@ -66,7 +66,7 @@
         [icon]="faCircleNotch"
         [spin]="true"
         style="--fa-animation-duration: 0.7s"
-        class="text-gray-700 fa-2x"
+        class="text-gray-400 fa-2x"
       ></fa-icon>
     </div>
   </div>
