@@ -1,7 +1,7 @@
 <div *ngIf="isRandomAMALoaded; else elseBlock" class="middle">
   <!-- Title -->
   <div class="mt-6 flex flex-row">
-    <span class="font-semibold text-red-400">Title</span>
+    <span class="font-semibold text-red-500">Title</span>
     <div class="flex-grow text-right truncate">
       <span class="font-semibold text-gray-600">{{ reddit.timestamp }}</span>
     </div>
@@ -10,7 +10,7 @@
 
   <!-- Description -->
   <div class="mt-6 cursor-pointer" (click)="showDescription()">
-    <span class="font-semibold text-red-400">Description</span>
+    <span class="font-semibold text-red-500">Description</span>
     <span class="text-gray-600 text-lg ml-2 italic"
       >({{ isShowDescription ? "less" : "more" }})</span
     >
@@ -21,28 +21,28 @@
     [innerHTML]="reddit.body || '[Empty]'"
   ></div>
 
-  <hr class="border-gray-700 border-opacity-40 mt-6" />
+  <hr class="border-gray-400 border-opacity-30 mt-6" />
 
   <!-- Question -->
   <div class="mt-6">
-    <span class="font-semibold text-red-400">{{ reddit.qaId }}.</span>
-    <span class="font-semibold text-red-400 ml-2">Question</span>
+    <span class="font-semibold text-red-500">{{ reddit.qaId }}.</span>
+    <span class="font-semibold text-red-500 ml-2">Question</span>
   </div>
   <div class="text-xl break-normal" [innerHTML]="reddit.question"></div>
 
   <!-- Answer -->
   <div class="mt-6">
-    <span class="font-semibold text-red-400">Answer</span>
+    <span class="font-semibold text-red-500">Answer</span>
   </div>
   <div class="text-xl break-normal" [innerHTML]="reddit.answer"></div>
 
   <!-- View more -->
   <div class="mt-6 text-center">
-    <span class="font-semibold text-red-400">
+    <span class="font-semibold text-red-500">
       <span class="text-xl ml-2 italic">
         <a
           routerLink="/view/{{ reddit.amaId }}"
-          class="text-red-400"
+          class="text-red-500"
           routerLinkActive="active"
           ariaCurrentWhenActive="page"
           >(See more)</a
@@ -53,7 +53,7 @@
 
   <!-- Source-->
   <div class="mt-6">
-    <span class="font-semibold text-red-400">Source</span>
+    <span class="font-semibold text-red-500">Source</span>
   </div>
   <div class="text-xl truncate">
     <a href="{{ reddit.url }}" target="_blank">{{ reddit.url }}</a>
