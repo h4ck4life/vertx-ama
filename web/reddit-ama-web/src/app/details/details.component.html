@@ -23,18 +23,19 @@
     [innerHTML]="redditList[0].body || '[Empty]'"
   ></div>
 
-  <div *ngFor="let reddit of redditList">
+  <div class="mt-6" *ngFor="let reddit of redditList">
+    <hr class="border-gray-700 border-opacity-60" />
     <!-- Question -->
     <div class="mt-6">
-      <span class="font-semibold text-red-400">Question</span>
-      <span class="font-semibold text-red-400 ml-2">#{{ reddit.qaId }}</span>
+      <span class="font-semibold text-red-400">#{{ reddit.qaId }}</span>
+      <span class="font-semibold text-red-400 ml-2">Question</span>
     </div>
     <div class="text-xl break-normal" [innerHTML]="reddit.question"></div>
 
     <!-- Answer -->
     <div class="mt-6">
-      <span class="font-semibold text-red-400">Answer</span>
-      <span class="font-semibold text-red-400 ml-2">#{{ reddit.qaId }}</span>
+      <span class="font-semibold text-red-400">#{{ reddit.qaId }}</span>
+      <span class="font-semibold text-red-400 ml-2">Answer</span>
     </div>
     <div class="text-xl break-normal" [innerHTML]="reddit.answer"></div>
   </div>
