@@ -6,11 +6,11 @@
       <div class="flex-grow text-right truncate">
         <span class="text-sm text-gray-500 italic">{{ totalAnswer }} answers</span>
         <span class="ml-3 text-sm text-gray-500 italic pr-2">{{
-          redditList[0].timestamp
+          redditList.data[0].timestamp
         }}</span>
       </div>
     </div>
-    <div class="" [innerHTML]="redditList[0].title"></div>
+    <div class="" [innerHTML]="redditList.data[0].title"></div>
 
     <!-- Description -->
     <div class="mt-6 cursor-pointer" (click)="showDescription()">
@@ -22,10 +22,10 @@
     <div
       *ngIf="isShowDescription"
       class="break-words"
-      [innerHTML]="redditList[0].body || '[Empty]'"
+      [innerHTML]="redditList.data[0].body || '[Empty]'"
     ></div>
 
-    <div class="mt-6" *ngFor="let reddit of redditList">
+    <div class="mt-6" *ngFor="let reddit of redditList.data">
       <hr class="border-gray-400 border-opacity-30" />
       <!-- Question -->
       <div class="mt-6">
@@ -59,8 +59,8 @@
       <span class="font-semibold text-red-500">Source</span>
     </div>
     <div class="truncate">
-      <a href="{{ redditList[0].url }}" target="_blank">{{
-        redditList[0].url
+      <a href="{{ redditList.data[0].url }}" target="_blank">{{
+        redditList.data[0].url
       }}</a>
     </div>
   </div>

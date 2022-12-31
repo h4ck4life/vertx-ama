@@ -6,13 +6,9 @@ import com.filavents.services.RedditService;
 import com.filavents.services.impl.RedditServiceImpl;
 import io.vertx.core.CompositeFuture;
 import io.vertx.core.Future;
-import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.RoutingContext;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class RedditController {
 
@@ -22,26 +18,25 @@ public class RedditController {
     private RedditController() {
     }
 
-    public static Future<Reddit> getRandomAMA(RoutingContext ctx) {
+    public static Future<Map> getRandomAMA(RoutingContext ctx) {
         return Future.future(promise -> {
             Reddit reddit = redditService.getRandom();
+            Map response = new HashMap();
             if (reddit != null) {
-                promise.complete(reddit);
+                int total = redditService.countByAmaId(reddit.getAmaId());
+                response.put("total", total);
+                response.put("data", reddit);
+                promise.complete(response);
             } else {
-                promise.complete(new JsonObject().put("error", "No AMA found").mapTo(Reddit.class));
+                response.put("total", 0);
+                response.put("data", null);
+                promise.complete(response);
             }
         });
     }
 
     public static Future<Map> getAMAById(RoutingContext ctx) {
         return Future.future(returnPromise -> {
-            /*String amaId = ctx.pathParam("amaId");
-            List<Reddit> redditList = redditService.getAllByAmaId(amaId, LIMIT, getOffset(ctx));
-            if (redditList.size() > 0) {
-                promise.complete(redditList);
-            } else {
-                promise.complete(Collections.emptyList());
-            }*/
             String amaId = ctx.pathParam("amaId");
             List<Future> futureList = new ArrayList<>();
 

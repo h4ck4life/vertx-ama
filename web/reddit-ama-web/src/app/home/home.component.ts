@@ -27,17 +27,22 @@ export class HomeComponent {
   linkifyHtml = linkifyHtml;
 
   // Data
-  reddit: Reddit = {};
+  reddit: Reddit = {
+    total: 0,
+    data: {}
+  };
+  totalAnswer: number = 0;
 
   constructor(private appService: AppService) { }
 
   ngOnInit(): void {
     this.appService.getReddit().subscribe((data) => {
       this.reddit = data;
-      this.reddit.body = linkifyHtml(this.reddit.body as string, { target: "_blank" }).replaceAll('\n', '<br>');
-      this.reddit.answer = linkifyHtml(this.reddit.answer as string, { target: "_blank" }).replaceAll('\n', '<br>');
-      this.reddit.question = linkifyHtml(this.reddit.question as string, { target: "_blank" }).replaceAll('\n', '<br>');
+      this.reddit.data.body = linkifyHtml(this.reddit.data.body as string, { target: "_blank" }).replaceAll('\n', '<br>');
+      this.reddit.data.answer = linkifyHtml(this.reddit.data.answer as string, { target: "_blank" }).replaceAll('\n', '<br>');
+      this.reddit.data.question = linkifyHtml(this.reddit.data.question as string, { target: "_blank" }).replaceAll('\n', '<br>');
       this.isRandomAMALoaded = true;
+      this.totalAnswer = data.total;
     });
   }
 

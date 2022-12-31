@@ -8,6 +8,7 @@ import linkifyHtml from 'linkify-html';
 
 import { AppService } from '../app.service';
 import { Reddit } from '../Reddit';
+import { Datum, RedditList } from '../RedditList';
 
 @Component({
   selector: 'app-details',
@@ -28,7 +29,13 @@ export class DetailsComponent {
 
   // Data
   redditId: string = '';
-  redditList: Reddit[] = [];
+  redditList: RedditList = {
+    total: 0,
+    data: [],
+    concat: function (data: Datum[]): RedditList {
+      throw new Error('Function not implemented.');
+    }
+  };
   currentPage: number = 1;
   totalAnswer: number = 0;
 
@@ -41,12 +48,12 @@ export class DetailsComponent {
     this.redditId = this.route.snapshot.paramMap.get('id') as string;
     this.appService.getAllRedditById(this.redditId, this.currentPage).subscribe((response) => {
       if (response.data.length > 0) {
-        response.data.map((reddit: Reddit) => {
+        response.data.map((reddit: Datum) => {
           reddit.body = linkifyHtml(reddit.body as string, { target: "_blank" }).replaceAll('\n', '<br>');
           reddit.answer = linkifyHtml(reddit.answer as string, { target: "_blank" }).replaceAll('\n', '<br>');
           reddit.question = linkifyHtml(reddit.question as string, { target: "_blank" }).replaceAll('\n', '<br>');
         });
-        this.redditList = response.data;
+        this.redditList.data = response.data;
         this.isRandomAMALoaded = true;
         this.isResultFound = true;
         this.totalAnswer = response.total;
@@ -64,7 +71,7 @@ export class DetailsComponent {
     this.currentPage++;
     this.appService.getAllRedditById(this.redditId, this.currentPage).subscribe((response) => {
       if (response.data.length > 0) {
-        response.data.map((reddit: Reddit) => {
+        response.data.map((reddit: Datum) => {
           reddit.body = linkifyHtml(reddit.body as string, { target: "_blank" }).replaceAll('\n', '<br>');
           reddit.answer = linkifyHtml(reddit.answer as string, { target: "_blank" }).replaceAll('\n', '<br>');
           reddit.question = linkifyHtml(reddit.question as string, { target: "_blank" }).replaceAll('\n', '<br>');

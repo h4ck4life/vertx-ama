@@ -1,4 +1,5 @@
 export interface RedditList {
+    concat(data: Datum[]): RedditList;
     total: number;
     data:  Datum[];
 }

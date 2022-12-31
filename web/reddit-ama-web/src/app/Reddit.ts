@@ -1,9 +1,14 @@
 export interface Reddit {
+    total: number;
+    data:  Datum;
+}
+
+export interface Datum {
     amaId?:     string;
     qaId?:      string;
     title?:     string;
-    body?:      string;
     url?:       string;
+    body?:      string;
     question?:  string;
     answer?:    string;
     timestamp?: string;

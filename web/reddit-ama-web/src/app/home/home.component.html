@@ -3,10 +3,11 @@
   <div class="mt-6 flex flex-row ">
     <span class="font-semibold text-red-500">Title</span>
     <div class="flex-grow text-right truncate">
-      <span class="text-sm text-gray-400 italic pr-2">{{ reddit.timestamp }}</span>
+      <span class="text-sm text-gray-500 italic">{{ totalAnswer }} answers</span>
+      <span class="ml-2 text-sm text-gray-500 italic pr-2">{{ reddit.data.timestamp }}</span>
     </div>
   </div>
-  <div class="" [innerHTML]="reddit.title"></div>
+  <div class="" [innerHTML]="reddit.data.title"></div>
 
   <!-- Description -->
   <div class="mt-6 cursor-pointer" (click)="showDescription()">
@@ -18,7 +19,7 @@
   <div
     *ngIf="isShowDescription"
     class="break-words"
-    [innerHTML]="reddit.body || '[Empty]'"
+    [innerHTML]="reddit.data.body || '[Empty]'"
   ></div>
 
   <hr class="border-gray-400 border-opacity-30 mt-6" />
@@ -27,20 +28,20 @@
   <div class="mt-6">
     <span class="font-semibold text-red-500">Question</span>
   </div>
-  <div class="break-normal" [innerHTML]="reddit.question"></div>
+  <div class="break-normal" [innerHTML]="reddit.data.question"></div>
 
   <!-- Answer -->
   <div class="mt-6">
     <span class="font-semibold text-red-500">Answer</span>
   </div>
-  <div class="break-normal" [innerHTML]="reddit.answer"></div>
+  <div class="break-normal" [innerHTML]="reddit.data.answer"></div>
 
   <!-- View more -->
   <div class="mt-6 text-center">
     <span class="font-semibold text-red-500">
       <span class="ml-2 italic">
         <a
-          routerLink="/view/{{ reddit.amaId }}"
+          routerLink="/view/{{ reddit.data.amaId }}"
           class="text-red-500"
           routerLinkActive="active"
           ariaCurrentWhenActive="page"
@@ -55,7 +56,7 @@
     <span class="font-semibold text-red-500">Source</span>
   </div>
   <div class=" truncate">
-    <a href="{{ reddit.url }}" target="_blank">{{ reddit.url }}</a>
+    <a href="{{ reddit.data.url }}" target="_blank">{{ reddit.data.url }}</a>
   </div>
 </div>
 <ng-template #elseBlock>
