@@ -50,6 +50,7 @@ export class DetailsComponent {
         this.isRandomAMALoaded = true;
         this.isResultFound = true;
         this.totalAnswer = response.total;
+        this.showSeeMore = response.data.length < 10 ? false : true;
       } else {
         this.isRandomAMALoaded = true;
         this.isResultFound = false;
@@ -70,8 +71,9 @@ export class DetailsComponent {
         });
         this.redditList = this.redditList.concat(response.data);
         this.totalAnswer = response.total;
+        this.showSeeMore = response.data.length < 10 ? false : true;
       } else {
-        this.showSeeMore = response.total < 10 ? false : true;
+        this.showSeeMore = false;
       }
     });
   }
