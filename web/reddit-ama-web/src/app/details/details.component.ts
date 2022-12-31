@@ -76,7 +76,7 @@ export class DetailsComponent {
           reddit.answer = linkifyHtml(reddit.answer as string, { target: "_blank" }).replaceAll('\n', '<br>');
           reddit.question = linkifyHtml(reddit.question as string, { target: "_blank" }).replaceAll('\n', '<br>');
         });
-        this.redditList = this.redditList.concat(response.data);
+        this.redditList.data = this.redditList.data.concat(response.data);
         this.totalAnswer = response.total;
         this.showSeeMore = response.data.length < 10 ? false : true;
       } else {
