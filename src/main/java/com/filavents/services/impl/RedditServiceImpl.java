@@ -81,4 +81,48 @@ public class RedditServiceImpl implements RedditService {
 
         return redditList;
     }
+
+    @Override
+    public int getTotalByKeyword(String keyword) {
+        int total = 0;
+        EntityManager entityManager = Database.getEntityManagerFactory().createEntityManager();
+
+        try {
+            total = entityManager.createQuery(
+                            "SELECT COUNT(r) FROM Reddit r WHERE r.title LIKE :keyword",
+                            Long.class
+                    )
+                    .setParameter("keyword", "%" + keyword + "%")
+                    .getSingleResult()
+                    .intValue();
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        } finally {
+            entityManager.close();
+        }
+
+        return total;
+    }
+
+    @Override
+    public int countByAmaId(String amaId) {
+        int total = 0;
+        EntityManager entityManager = Database.getEntityManagerFactory().createEntityManager();
+
+        try {
+            total = entityManager.createQuery(
+                            "SELECT COUNT(r) FROM Reddit r WHERE r.amaId = :amaId",
+                            Long.class
+                    )
+                    .setParameter("amaId", amaId)
+                    .getSingleResult()
+                    .intValue();
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        } finally {
+            entityManager.close();
+        }
+
+        return total;
+    }
 }

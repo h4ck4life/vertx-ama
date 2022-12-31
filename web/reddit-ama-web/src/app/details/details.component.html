@@ -4,7 +4,8 @@
     <div class="mt-6 flex flex-row">
       <span class="font-semibold text-red-500">Title</span>
       <div class="flex-grow text-right truncate">
-        <span class="text-sm text-gray-400 italic">{{
+        <span class="text-sm text-gray-500 italic">{{ totalAnswer }} answers</span>
+        <span class="ml-3 text-sm text-gray-500 italic pr-2">{{
           redditList[0].timestamp
         }}</span>
       </div>
@@ -35,13 +36,13 @@
 
       <!-- Answer -->
       <div class="mt-6">
-        <span class="font-semibold text-red-500">Answer</span>
+        <span class="font-semibold text-red-500 ml-2">Answer</span>
       </div>
       <div class="break-normal" [innerHTML]="reddit.answer"></div>
     </div>
 
     <!-- View more -->
-    <div *ngIf="!hideSeeMore" class="mt-6 text-center">
+    <div *ngIf="showSeeMore" class="mt-6 text-center">
       <span class="font-semibold text-red-500 cursor-pointer">
         <span class="ml-2 italic">
           <a

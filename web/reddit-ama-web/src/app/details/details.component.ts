@@ -24,12 +24,13 @@ export class DetailsComponent {
   isRandomAMALoaded = false;
   isShowDescription = false;
   isResultFound = false;
-  hideSeeMore = false;
+  showSeeMore = true;
 
   // Data
   redditId: string = '';
   redditList: Reddit[] = [];
   currentPage: number = 1;
+  totalAnswer: number = 0;
 
   // 3rd libraries
   linkifyHtml = linkifyHtml;
@@ -38,19 +39,21 @@ export class DetailsComponent {
 
   ngOnInit(): void {
     this.redditId = this.route.snapshot.paramMap.get('id') as string;
-    this.appService.getAllRedditById(this.redditId, this.currentPage).subscribe((data) => {
-      if (data.length > 0) {
-        data.map((reddit: Reddit) => {
+    this.appService.getAllRedditById(this.redditId, this.currentPage).subscribe((response) => {
+      if (response.data.length > 0) {
+        response.data.map((reddit: Reddit) => {
           reddit.body = linkifyHtml(reddit.body as string, { target: "_blank" }).replaceAll('\n', '<br>');
           reddit.answer = linkifyHtml(reddit.answer as string, { target: "_blank" }).replaceAll('\n', '<br>');
           reddit.question = linkifyHtml(reddit.question as string, { target: "_blank" }).replaceAll('\n', '<br>');
         });
-        this.redditList = data;
+        this.redditList = response.data;
         this.isRandomAMALoaded = true;
         this.isResultFound = true;
+        this.totalAnswer = response.total;
       } else {
         this.isRandomAMALoaded = true;
         this.isResultFound = false;
+        this.showSeeMore = false;
       }
     }
     )
@@ -58,16 +61,17 @@ export class DetailsComponent {
 
   viewMore(): void {
     this.currentPage++;
-    this.appService.getAllRedditById(this.redditId, this.currentPage).subscribe((data) => {
-      if (data.length > 0) {
-        data.map((reddit: Reddit) => {
+    this.appService.getAllRedditById(this.redditId, this.currentPage).subscribe((response) => {
+      if (response.data.length > 0) {
+        response.data.map((reddit: Reddit) => {
           reddit.body = linkifyHtml(reddit.body as string, { target: "_blank" }).replaceAll('\n', '<br>');
           reddit.answer = linkifyHtml(reddit.answer as string, { target: "_blank" }).replaceAll('\n', '<br>');
           reddit.question = linkifyHtml(reddit.question as string, { target: "_blank" }).replaceAll('\n', '<br>');
         });
-        this.redditList = this.redditList.concat(data);
+        this.redditList = this.redditList.concat(response.data);
+        this.totalAnswer = response.total;
       } else {
-        this.hideSeeMore = true;
+        this.showSeeMore = response.total < 10 ? false : true;
       }
     });
   }
@@ -75,4 +79,5 @@ export class DetailsComponent {
   showDescription(): void {
     this.isShowDescription = !this.isShowDescription;
   }
+
 }

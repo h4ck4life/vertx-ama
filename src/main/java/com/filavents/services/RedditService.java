@@ -10,4 +10,8 @@ public interface RedditService {
     List<Reddit> getAllByAmaId(String amaId, int limit, int offset);
 
     List<Reddit> getAllByKeyword(String keyword, int limit, int offset);
+
+    int getTotalByKeyword(String keyword);
+
+    int countByAmaId(String amaId);
 }
