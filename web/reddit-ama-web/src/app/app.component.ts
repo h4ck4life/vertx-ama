@@ -13,8 +13,25 @@ export class AppComponent {
   faMagnifyingGlass = faMagnifyingGlass;
   faCircleHalfStroke = faCircleHalfStroke;
 
+  // Data
+  isDarkMode = false;
+
+  ngOnInit(): void {
+    this.isDarkMode = localStorage.getItem('darkMode') === 'true';
+    if (this.isDarkMode) {
+      document.body.parentElement!.classList.add('dark');
+    }
+  }
+
   toggleDarkMode(): void {
-    document.body.parentElement!.classList.toggle('dark');
+    // toggle dark mode and save to localstorage
+    this.isDarkMode = !this.isDarkMode;
+    localStorage.setItem('darkMode', this.isDarkMode.toString());
+    if (this.isDarkMode) {
+      document.body.parentElement!.classList.add('dark');
+    } else {
+      document.body.parentElement!.classList.remove('dark');
+    }
   }
 
 }
