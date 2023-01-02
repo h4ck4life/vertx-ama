@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { Router } from "@angular/router";
 
 import { faRedditAlien } from '@fortawesome/free-brands-svg-icons';
-import { faMagnifyingGlass, faCircleHalfStroke } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -12,17 +12,19 @@ import { faMagnifyingGlass, faCircleHalfStroke } from '@fortawesome/free-solid-s
 export class AppComponent {
   faRedditAlien = faRedditAlien;
   faMagnifyingGlass = faMagnifyingGlass;
-  faCircleHalfStroke = faCircleHalfStroke;
+  faMoon = faMoon;
+  faSun = faSun;
 
   // Data
   isDarkMode = false;
+  isShowSearch = false;
   searchQuery = '';
 
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-
+    // Check if dark mode is enabled
     this.isDarkMode = localStorage.getItem('darkMode') === 'true';
     if (this.isDarkMode) {
       document.body.parentElement!.classList.add('dark');
@@ -40,9 +42,11 @@ export class AppComponent {
     }
   }
 
+  // Toggle search bar
+  toggleSearch(): void {
+    this.isShowSearch = !this.isShowSearch;
+  }
 
-
-  // bind the searchQuery to the input field and the search function to the search button
   search(): void {
     this.router.navigate(['/search', this.searchQuery])
   }

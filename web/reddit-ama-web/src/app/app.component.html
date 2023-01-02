@@ -1,7 +1,7 @@
 <div class="p-4">
   <div class="flex flex-row select-none">
     <div
-      class="top cursor-pointer mb-8"
+      class="top cursor-pointer mb-2"
       routerLink=""
       routerLinkActive="active"
       ariaCurrentWhenActive="page"
@@ -13,25 +13,33 @@
       <span class="text-3xl font-light"> AMA</span>
     </div>
     <div class="flex-grow text-end">
-      <span class="mr-3 text-2xl text-red-400 align-middle dark:text-slate-600 cursor-pointer select-none" (click)="toggleDarkMode()">
-        <fa-icon [icon]="faCircleHalfStroke"></fa-icon>
+      <span
+        class="mr-3 text-2xl text-red-400 align-middle dark:text-slate-600 cursor-pointer select-none"
+        (click)="toggleDarkMode()"
+      >
+        <fa-icon [icon]="isDarkMode ? faSun : faMoon"></fa-icon>
       </span>
-      <!--
-        <span class="ml-3 text-2xl text-red-400 dark:text-slate-600 align-middle select-none">
-        <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
+      <span
+        (click)="toggleSearch()"
+        class="ml-3 text-2xl text-red-400 dark:text-slate-600 align-middle cursor-pointer select-none"
+      >
+        <fa-icon id="search-icon" [icon]="faMagnifyingGlass"></fa-icon>
       </span>
-      -->
-      <input
-        type="search"
-        class="dark:bg-slate-700 rounded p-2 w-48 shadow"
-        placeholder="Search"
-        [(ngModel)]="searchQuery"
-        (keyup.enter)="search()"
-      />
     </div>
   </div>
+  <div *ngIf="isShowSearch" class="mb-6" id="search-bar">
+    <input
+      type="search"
+      class="dark:bg-slate-700 p-2 w-full rounded shadow"
+      placeholder="Search"
+      [(ngModel)]="searchQuery"
+      (keyup.enter)="search()"
+    />
+  </div>
 
-  <router-outlet></router-outlet>
+  <div class="mt-4">
+    <router-outlet></router-outlet>
+  </div>
 
   <div class="footer">
     <div class="text-sm text-center mt-8 text-gray-500 font-light">
