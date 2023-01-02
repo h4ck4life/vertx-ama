@@ -105,7 +105,7 @@ public class RedditServiceImpl implements RedditService {
     }
 
     @Override
-    public int countByAmaId(String amaId) {
+    public int getTotalByAmaId(String amaId) {
         int total = 0;
         EntityManager entityManager = Database.getEntityManagerFactory().createEntityManager();
 

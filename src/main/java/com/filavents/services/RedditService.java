@@ -13,5 +13,5 @@ public interface RedditService {
 
     int getTotalByKeyword(String keyword);
 
-    int countByAmaId(String amaId);
+    int getTotalByAmaId(String amaId);
 }

@@ -23,7 +23,7 @@ public class RedditController {
             Reddit reddit = redditService.getRandom();
             Map<String, Object> response = new HashMap<>();
             if (reddit != null) {
-                int total = redditService.countByAmaId(reddit.getAmaId());
+                int total = redditService.getTotalByAmaId(reddit.getAmaId());
                 response.put("total", total);
                 response.put("data", reddit);
                 promise.complete(response);
@@ -52,7 +52,7 @@ public class RedditController {
 
             // Count total
             futureList.add(Future.future(promise -> {
-                int total = redditService.countByAmaId(amaId);
+                int total = redditService.getTotalByAmaId(amaId);
                 promise.complete(total);
             }));
 

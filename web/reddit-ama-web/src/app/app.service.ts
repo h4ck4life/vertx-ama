@@ -19,6 +19,10 @@ export class AppService {
     return this.http.get<RedditList>(this.getHostname() + '/api/' + id + '/page/' + page)
   }
 
+  searchReddit(query: string, page: number): Observable<RedditList> {
+    return this.http.get<RedditList>(this.getHostname() + '/api/search/' + query + '/page/' + page)
+  }
+
   private getHostname(): string {
     return isDevMode() ? 'http://localhost:8080' : '';
   }

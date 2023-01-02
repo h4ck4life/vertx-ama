@@ -14,14 +14,14 @@
     </div>
     <div class="flex-grow text-end">
       <span
-        class="mr-3 text-2xl text-red-400 align-middle dark:text-slate-600 cursor-pointer select-none"
+        class="mr-3 text-2xl text-red-400 align-middle hover:dark:text-slate-500 dark:text-slate-600 cursor-pointer select-none"
         (click)="toggleDarkMode()"
       >
         <fa-icon [icon]="isDarkMode ? faSun : faMoon"></fa-icon>
       </span>
       <span
         (click)="toggleSearch()"
-        class="ml-3 text-2xl text-red-400 dark:text-slate-600 align-middle cursor-pointer select-none"
+        class="ml-3 text-2xl text-red-400 hover:dark:text-slate-500 dark:text-slate-600 align-middle cursor-pointer select-none"
       >
         <fa-icon id="search-icon" [icon]="faMagnifyingGlass"></fa-icon>
       </span>
@@ -34,6 +34,7 @@
       placeholder="Search"
       [(ngModel)]="searchQuery"
       (keyup.enter)="search()"
+      autofocus
     />
   </div>
 

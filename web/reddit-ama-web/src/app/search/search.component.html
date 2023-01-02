@@ -1,1 +1,64 @@
-<p>search works!</p>
+<div
+  *ngIf="isSearchLoaded; else elseBlock"
+  class="middle bg-zinc-50 dark:bg-slate-900 rounded-md p-6 shadow"
+>
+  <div *ngIf="isResultFound; else noResult">
+    <!-- Loop the results -->
+    <div class="mt-6" *ngFor="let reddit of redditList.data">
+      <hr class="border-gray-400 border-opacity-30" />
+
+      <a [routerLink]="['/view', reddit.amaId]">
+        <!-- Title -->
+        <div class="mt-6 flex flex-row">
+          <span class="font-semibold text-red-500">Title</span>
+          <div class="flex-grow text-right truncate">
+            <span class="text-sm text-gray-500 italic"
+              >{{ totalAnswer }} answers</span
+            >
+            <span class="ml-3 text-sm text-gray-500 italic pr-2">{{
+              reddit.timestamp
+            }}</span>
+          </div>
+        </div>
+        <div class="" [innerHTML]="reddit.title"></div>
+      </a>
+
+      <!-- Question -->
+      <div class="mt-6">
+        <span class="font-semibold text-red-500">{{ reddit.qaId }}.</span>
+        <span class="font-semibold text-red-500 ml-2">Question</span>
+      </div>
+      <div class="break-normal" [innerHTML]="reddit.question"></div>
+    </div>
+
+    <!-- View more -->
+    <div *ngIf="showSeeMore" class="mt-6 text-center">
+      <span class="font-semibold text-red-500 cursor-pointer">
+        <span class="ml-2 italic">
+          <a (click)="viewMore()" class="text-red-500 select-none"
+            >(Load more)</a
+          >
+        </span>
+      </span>
+    </div>
+  </div>
+</div>
+<ng-template #noResult>
+  <div class="text-center">
+    <div class="mt-6">
+      <span>No result found.</span>
+    </div>
+  </div>
+</ng-template>
+<ng-template #elseBlock>
+  <div class="text-center">
+    <div class="mt-6">
+      <fa-icon
+        [icon]="faCircleNotch"
+        [spin]="true"
+        style="--fa-animation-duration: 0.7s"
+        class="text-gray-400 fa-2x"
+      ></fa-icon>
+    </div>
+  </div>
+</ng-template>
