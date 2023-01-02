@@ -13,7 +13,10 @@
       <span class="text-3xl font-light"> AMA</span>
     </div>
     <div class="flex-grow text-end">
-      <span class="text-2xl text-red-400 align-middle">
+      <span class="text-2xl text-red-400 align-middle cursor-pointer" (click)="toggleDarkMode()">
+        <fa-icon [icon]="faCircleHalfStroke"></fa-icon>
+      </span>
+      <span class="ml-3 text-2xl text-red-400 align-middle cursor-pointer">
         <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
       </span>
     </div>
