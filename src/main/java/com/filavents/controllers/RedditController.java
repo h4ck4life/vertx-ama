@@ -18,10 +18,10 @@ public class RedditController {
     private RedditController() {
     }
 
-    public static Future<Map> getRandomAMA(RoutingContext ctx) {
+    public static Future<Map<String, Object>> getRandomAMA(RoutingContext ctx) {
         return Future.future(promise -> {
             Reddit reddit = redditService.getRandom();
-            Map response = new HashMap();
+            Map<String, Object> response = new HashMap<>();
             if (reddit != null) {
                 int total = redditService.countByAmaId(reddit.getAmaId());
                 response.put("total", total);
@@ -35,7 +35,7 @@ public class RedditController {
         });
     }
 
-    public static Future<Map> getAMAById(RoutingContext ctx) {
+    public static Future<Map<String, Object>> getAMAById(RoutingContext ctx) {
         return Future.future(returnPromise -> {
             String amaId = ctx.pathParam("amaId");
             List<Future> futureList = new ArrayList<>();
@@ -71,7 +71,7 @@ public class RedditController {
         });
     }
 
-    public static Future<Map> getAMAByKeyword(RoutingContext ctx) {
+    public static Future<Map<String, Object>> getAMAByKeyword(RoutingContext ctx) {
         return Future.future(returnPromise -> {
             String keyword = ctx.pathParam("keyword");
             List<Future> futureList = new ArrayList<>();
