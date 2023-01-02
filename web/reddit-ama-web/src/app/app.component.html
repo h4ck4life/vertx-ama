@@ -13,12 +13,21 @@
       <span class="text-3xl font-light"> AMA</span>
     </div>
     <div class="flex-grow text-end">
-      <span class="text-2xl text-red-400 align-middle cursor-pointer" (click)="toggleDarkMode()">
+      <span class="mr-3 text-2xl text-red-400 align-middle dark:text-slate-600 cursor-pointer select-none" (click)="toggleDarkMode()">
         <fa-icon [icon]="faCircleHalfStroke"></fa-icon>
       </span>
-      <span class="ml-3 text-2xl text-red-400 align-middle cursor-pointer">
+      <!--
+        <span class="ml-3 text-2xl text-red-400 dark:text-slate-600 align-middle select-none">
         <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
       </span>
+      -->
+      <input
+        type="search"
+        class="dark:bg-slate-700 rounded p-2 w-48 shadow"
+        placeholder="Search"
+        [(ngModel)]="searchQuery"
+        (keyup.enter)="search()"
+      />
     </div>
   </div>
 
