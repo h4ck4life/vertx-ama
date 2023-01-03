@@ -11,11 +11,11 @@ def get_date(created):
 
 
 def reddit_connection():
-    personal_use_script = "XsU8iAYn-d2CQNJeiEu1Rw"
-    client_secret = "BjKibBvl_iuHuJArpFhhLsq4bfQU0A"
-    user_agent = "web"
-    username = "tebingnenas"
-    password = "abcd1234"
+    personal_use_script = os.environ["REDDIT_PERSONAL_USE_SCRIPT_14_CHARS"]
+    client_secret = os.environ["REDDIT_SECRET_KEY_27_CHARS"]
+    user_agent = os.environ["REDDIT_APP_NAME"]
+    username = os.environ["REDDIT_USER_NAME"]
+    password = os.environ["REDDIT_LOGIN_PASSWORD"]
 
     reddit = praw.Reddit(client_id=personal_use_script, \
                          client_secret=client_secret, \
