@@ -49,6 +49,7 @@ public class App {
             ctx.response().sendFile("web/reddit-ama-web/dist/reddit-ama-web/index.html");
         });
 
+        // Frontend router path
         router.get("/view/*").handler(ctx -> {
             ctx.response().sendFile("web/reddit-ama-web/dist/reddit-ama-web/index.html");
         });
