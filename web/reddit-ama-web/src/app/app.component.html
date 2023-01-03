@@ -33,7 +33,7 @@
       class="dark:bg-slate-700 p-2 w-full rounded shadow"
       placeholder="Search"
       [(ngModel)]="searchQuery"
-      (keyup.enter)="search()"
+      (keydown.enter)="search()"
       autofocus
     />
   </div>
