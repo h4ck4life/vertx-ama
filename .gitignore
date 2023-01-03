@@ -41,3 +41,4 @@ build/
 .gitignore
 .idea/dataSources.xml
 .idea/misc.xml
+/.idea/csv-editor.xml
