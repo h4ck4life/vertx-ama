@@ -37,3 +37,7 @@ build/
 ### Mac OS ###
 .DS_Store
 /reddit_ama.sqlite
+.idea/sqldialects.xml
+.gitignore
+.idea/dataSources.xml
+.idea/misc.xml

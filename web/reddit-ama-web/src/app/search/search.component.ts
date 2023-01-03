@@ -38,10 +38,19 @@ export class SearchComponent {
   constructor(private route: ActivatedRoute, private appService: AppService) { }
 
   ngOnInit(): void {
-    this.searchQuery = this.route.snapshot.paramMap.get('query') as string;
-    this.appService.searchReddit(this.searchQuery, this.currentPage).subscribe((response) => {
+    //this.searchQuery = this.route.snapshot.paramMap.get('query') as string;
+    this.route.params.subscribe(params => {
+      this.searchQuery = params['query'];
+      this.searchReddit(this.searchQuery);
+    });
+    
+    
+  }
+
+  private searchReddit(searchTerm: string) : void {
+    this.appService.searchReddit(searchTerm, this.currentPage).subscribe((response) => {
       if (response.data.length > 0) {
-        response.data.map((reddit: Datum) => {
+        response.data.forEach((reddit: Datum) => {
           reddit.body = linkifyHtml(reddit.body as string, { target: "_blank" }).replaceAll('\n', '<br>');
           reddit.answer = linkifyHtml(reddit.answer as string, { target: "_blank" }).replaceAll('\n', '<br>');
           reddit.question = linkifyHtml(reddit.question as string, { target: "_blank" }).replaceAll('\n', '<br>');
