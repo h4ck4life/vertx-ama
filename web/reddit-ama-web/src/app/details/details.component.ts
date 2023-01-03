@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { faCircleNotch, faAnglesDown } from '@fortawesome/free-solid-svg-icons';
 
-import * as linkify from 'linkifyjs';
 import linkifyHtml from 'linkify-html';
 
 import { AppService } from '../app.service';
-import { Reddit } from '../Reddit';
 import { Datum, RedditList } from '../RedditList';
 
 @Component({

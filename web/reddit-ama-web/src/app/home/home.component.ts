@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 
 import { faCircleNotch, faAnglesDown } from '@fortawesome/free-solid-svg-icons';
-
-import * as linkify from 'linkifyjs';
 import linkifyHtml from 'linkify-html';
 
 import { AppService } from '../app.service';
