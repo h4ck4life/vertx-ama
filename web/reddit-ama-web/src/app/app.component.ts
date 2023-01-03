@@ -48,7 +48,7 @@ export class AppComponent {
   }
 
   search(): void {
-    this.router.navigate(['/search', this.searchQuery])
+    this.router.navigate(['view/search', this.searchQuery])
   }
 
 }
