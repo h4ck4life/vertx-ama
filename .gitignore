@@ -42,3 +42,4 @@ build/
 .idea/dataSources.xml
 .idea/misc.xml
 /.idea/csv-editor.xml
+/reddit_full.sqlite
