@@ -9,3 +9,8 @@
 
 Download the sqlite database here:
 https://www.dropbox.com/s/bkxn5z74cs10cl4/reddit_full.sqlite?dl=0
+
+### Todo
+- [ ] Fulltext search
+- [ ] Search results UI rework
+- [ ] Add more tests
