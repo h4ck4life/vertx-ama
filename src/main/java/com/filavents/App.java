@@ -45,9 +45,7 @@ public class App {
         router.get("/api/search/:keyword/page/:page").respond(RedditController::getAMAByKeyword);
 
         // setindexpage return index.html page
-        router.get("/").handler(ctx -> {
-            ctx.response().sendFile("web/reddit-ama-web/dist/reddit-ama-web/index.html");
-        });
+        router.get("/").handler(ctx -> ctx.response().sendFile("web/reddit-ama-web/dist/reddit-ama-web/index.html"));
 
         // Frontend router path
         router.get("/view/*").handler(ctx -> ctx.response().sendFile("web/reddit-ama-web/dist/reddit-ama-web/index.html"));
