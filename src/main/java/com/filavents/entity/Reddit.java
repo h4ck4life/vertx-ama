@@ -7,11 +7,14 @@ import java.util.Objects;
 @Entity
 @Table(name = "reddit_ama")
 public class Reddit {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
     @Column(name = "user_id", nullable = false)
     private String amaId;
 
-    @Id
     @Column(name = "QA_ID", nullable = false)
     private String qaId;
 
@@ -35,6 +38,14 @@ public class Reddit {
 
     @Transient
     private String error;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getBody() {
         return body;
@@ -124,7 +135,8 @@ public class Reddit {
     @Override
     public String toString() {
         return "Reddit{" +
-                "amaId='" + amaId + '\'' +
+                "id=" + id +
+                ", amaId='" + amaId + '\'' +
                 ", qaId='" + qaId + '\'' +
                 ", title='" + title + '\'' +
                 ", url='" + url + '\'' +

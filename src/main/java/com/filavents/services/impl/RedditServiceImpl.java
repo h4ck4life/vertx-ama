@@ -9,6 +9,7 @@ import jakarta.persistence.EntityManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class RedditServiceImpl implements RedditService {
 
@@ -20,11 +21,10 @@ public class RedditServiceImpl implements RedditService {
         EntityManager entityManager = Database.getEntityManagerFactory().createEntityManager();
 
         try {
-            reddit = entityManager.createQuery(
-                            "SELECT r FROM Reddit r ORDER BY RANDOM()",
-                            Reddit.class
-                    )
-                    .setMaxResults(1)
+            int random = ThreadLocalRandom.current().nextInt(0, 50623);
+
+            reddit = entityManager.createQuery("SELECT r FROM Reddit r WHERE r.id = :id", Reddit.class)
+                    .setParameter("id", random)
                     .getSingleResult();
         } catch (Exception e) {
             reddit = null;

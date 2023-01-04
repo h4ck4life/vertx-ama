@@ -9,7 +9,7 @@
         <class>com.filavents.entity.Reddit</class>
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="org.sqlite.JDBC"/>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:sqlite:reddit_ama.sqlite"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:sqlite:reddit_full.sqlite"/>
             <property name="hibernate.dialect" value="org.hibernate.community.dialect.SQLiteDialect"/>
             <!--<property name="hibernate.hbm2ddl.auto" value="update"/>-->
             <property name="hibernate.show_sql" value="false"/>
