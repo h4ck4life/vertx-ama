@@ -1,3 +1,6 @@
+### Original script source
+https://www.kaggle.com/datasets/isaacstevens/reddit-ama-questions-and-answers-export
+
 ### How to run the scrape script
 1. Install the dependencies
     1. `pip3 install praw pandas tqdm`
