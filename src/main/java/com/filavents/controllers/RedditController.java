@@ -43,10 +43,10 @@ public class RedditController {
             // Get AMA by amaId
             futureList.add(Future.future(promise -> {
                 List<Reddit> redditList = redditService.getAllByAmaId(amaId, LIMIT, getOffset(ctx));
-                if (redditList.size() > 0) {
-                    promise.complete(redditList);
-                } else {
+                if (redditList.isEmpty()) {
                     promise.complete(Collections.emptyList());
+                } else {
+                    promise.complete(redditList);
                 }
             }));
 
