@@ -17,6 +17,7 @@ Download the sqlite database here:
 https://www.dropbox.com/s/bkxn5z74cs10cl4/reddit_full.sqlite?dl=0
 
 ### Todo
+- [ ] Add caching
 - [ ] Fulltext search
 - [ ] Search UI rework
 - [ ] Add more tests
