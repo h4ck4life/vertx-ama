@@ -8,6 +8,7 @@ target/
 .idea/jarRepositories.xml
 .idea/compiler.xml
 .idea/libraries/
+.idea/**
 *.iws
 *.iml
 *.ipr
@@ -43,3 +44,4 @@ build/
 .idea/misc.xml
 /.idea/csv-editor.xml
 /reddit_full.sqlite
+/.idea/sonarlint/**
