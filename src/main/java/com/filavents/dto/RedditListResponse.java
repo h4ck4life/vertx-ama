@@ -25,7 +25,7 @@ public class RedditListResponse {
         return redditList;
     }
 
-    public Map<String, Object> toMap() {
+    public Map<String, Object> asMap() {
         Map<String, Object> map = new HashMap<>();
         map.put("total", total);
         map.put("data", redditList);

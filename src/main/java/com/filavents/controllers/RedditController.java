@@ -62,10 +62,10 @@ public class RedditController {
                     List<Reddit> redditList = ar.result().resultAt(0);
                     int total = ar.result().resultAt(1);
                     RedditListResponse redditListResponse = new RedditListResponse(total, redditList);
-                    returnPromise.complete(redditListResponse.toMap());
+                    returnPromise.complete(redditListResponse.asMap());
                 } else {
                     RedditListResponse redditListResponse = new RedditListResponse(0, Collections.emptyList());
-                    returnPromise.complete(redditListResponse.toMap());
+                    returnPromise.complete(redditListResponse.asMap());
                 }
             });
         });
@@ -99,9 +99,9 @@ public class RedditController {
                             (int) ar.result().list().get(1),
                             (List<Reddit>) ar.result().list().get(0)
                     );
-                    returnPromise.complete(redditListResponse.toMap());
+                    returnPromise.complete(redditListResponse.asMap());
                 } else {
-                    returnPromise.complete(new RedditListResponse(0, Collections.emptyList()).toMap());
+                    returnPromise.complete(new RedditListResponse(0, Collections.emptyList()).asMap());
                 }
             });
         });
