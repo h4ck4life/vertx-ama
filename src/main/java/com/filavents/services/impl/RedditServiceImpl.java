@@ -3,6 +3,7 @@ package com.filavents.services.impl;
 import com.filavents.configs.Database;
 import com.filavents.entity.Reddit;
 import com.filavents.services.RedditService;
+import com.filavents.utils.Cache;
 import io.vertx.core.impl.logging.Logger;
 import io.vertx.core.impl.logging.LoggerFactory;
 import jakarta.persistence.EntityManager;
@@ -23,9 +24,15 @@ public class RedditServiceImpl implements RedditService {
         try {
             int random = ThreadLocalRandom.current().nextInt(0, 50623);
 
-            reddit = entityManager.createQuery("SELECT r FROM Reddit r WHERE r.id = :id", Reddit.class)
-                    .setParameter("id", random)
-                    .getSingleResult();
+            if(Cache.getInstance().getIfPresent(random) != null) {
+                reddit = Cache.getInstance().getIfPresent(random);
+            } else {
+                reddit = entityManager.createQuery("SELECT r FROM Reddit r WHERE r.id = :id", Reddit.class)
+                        .setParameter("id", random)
+                        .getSingleResult();
+                Cache.getInstance().put(random, reddit);
+            }
+
         } catch (Exception e) {
             reddit = null;
             logger.error(e.getMessage());

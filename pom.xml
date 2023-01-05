@@ -56,6 +56,11 @@
             <artifactId>hibernate-community-dialects</artifactId>
             <version>6.1.6.Final</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.ben-manes.caffeine</groupId>
+            <artifactId>caffeine</artifactId>
+            <version>3.1.2</version>
+        </dependency>
     </dependencies>
 
 </project>

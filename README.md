@@ -21,7 +21,7 @@ https://reddit-ama.filavents.com/
 
    
 ### Todo:
-- [ ] Add caching
+- [x] Add caching
 - [ ] Fulltext search
 - [ ] Search UI rework
 - [ ] Add more tests
