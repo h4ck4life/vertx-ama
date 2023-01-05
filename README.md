@@ -5,7 +5,7 @@ https://reddit-ama.filavents.com/
 
 ### Tech stack
 1. Vert.x
-2. Angular
+2. Angular + TailwindCSS
 3. SQLite
 4. Hibernate
 
