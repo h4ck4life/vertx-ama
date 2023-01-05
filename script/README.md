@@ -11,5 +11,5 @@ https://www.kaggle.com/datasets/isaacstevens/reddit-ama-questions-and-answers-ex
       2. `tail -f output.log`
       3. `ps -ef | grep reddit_AMA.py`
       4. `kill -9 <PID>`
-2. Optional
+3. Optional
    1. Change the limit of data to scrape. See code.
